@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://codeyuri:codeyuri2020@cluster0-ksfu1.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "shopyuri_jwt"
+}

@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 // db config
-// const db = require('./config/keys').mongoURI;
+// const db = require('./config/keys').mongoURI; // updated with env
 
 // connect MongoDB
 // userNewUrlParser kay fix ni para sa error nga deprecated
@@ -33,10 +33,10 @@ app.use('/api/auth', require('./routes/api/auth'));
 // serve static assets - productions
 if(process.env.NODE_ENV === 'production') {
     // set static folder
-    app.use(express.static('client/dist'));
-    // app.use(express.static('client/dist', {
-    //     maxAge: '1y' // caching!
-    // }));
+    // app.use(express.static('client/dist'));
+    app.use(express.static('client/dist', {
+        maxAge: '1y' // caching!
+    }));
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));

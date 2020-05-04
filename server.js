@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 // db config
-const db = config.get('mongoURI');
+const db =  config.get('mongoURI') || config.get(process.env.mongoURI);
 
 // connect MongoDB
 // userNewUrlParser kay fix ni para sa error nga deprecated

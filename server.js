@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const config = require('config')
+
+// console.log(require('dotenv').config({debug: true}))
+require('dotenv').config();
 
 const app = express();
 
@@ -9,12 +11,12 @@ const app = express();
 app.use(express.json());
 
 // db config
-const db =  config.get('mongoURI') || config.get(process.env.mongoURI);
+// const db = require('./config/keys').mongoURI;
 
 // connect MongoDB
 // userNewUrlParser kay fix ni para sa error nga deprecated
 mongoose
-    .connect(db, {
+    .connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0-ksfu1.mongodb.net/test?retryWrites=true&w=majority`, {
         useNewUrlParser: true, 
         useUnifiedTopology: true, 
         useCreateIndex: true,
@@ -31,9 +33,10 @@ app.use('/api/auth', require('./routes/api/auth'));
 // serve static assets - productions
 if(process.env.NODE_ENV === 'production') {
     // set static folder
-    app.use(express.static('client/dist', {
-        maxAge: '1y' // caching!
-    }));
+    app.use(express.static('client/dist'));
+    // app.use(express.static('client/dist', {
+    //     maxAge: '1y' // caching!
+    // }));
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));

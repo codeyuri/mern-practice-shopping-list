@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink as TestLink } from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container, Alert } from 'reactstrap';
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
@@ -40,9 +39,6 @@ function AppNav() {
                                     </NavItem>
                                     <NavItem>
                                         <LoginModal />
-                                    </NavItem>
-                                    <NavItem>
-                                        <TestLink to="/test">Test Route</TestLink>
                                     </NavItem>
                                 </>
                             ) }

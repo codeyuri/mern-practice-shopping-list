@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -14,6 +15,17 @@ const ShoppingList = () => {
     useEffect(() => {
         dispatch(getItem())
     }, [])
+
+    const TestRoute = () => {
+        return (
+            <div>
+                <h1>TEEEEEEEEEEEST</h1>
+                <h1>TEEEEEEEEEEEST</h1>
+                <h1>TEEEEEEEEEEEST</h1>
+                <h1>TEEEEEEEEEEEST</h1>
+            </div>
+        )
+    }
 
     return (
         <Container>
@@ -43,6 +55,9 @@ const ShoppingList = () => {
 
                 </TransitionGroup>
             </ListGroup>
+            <Switch>
+                <Route path="/test" component={TestRoute} />
+            </Switch>
         </Container>
     )
 }
